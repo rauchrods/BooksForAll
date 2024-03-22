@@ -44,6 +44,7 @@ function UpdateBook() {
       method: "PUT",
       body: JSON.stringify(inputBook),
       headers: { "Content-Type": "application/json" },
+      redirect: "follow"
     })
       .then((response) => response.json())
       .then((result) => {
