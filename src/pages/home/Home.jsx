@@ -11,6 +11,7 @@ import { CiSquarePlus } from "react-icons/ci";
 function Home() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filterBooks, setFilterBooks] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -18,6 +19,7 @@ function Home() {
       .then((response) => response.json())
       .then((response) => {
         setBooks(response.data);
+        setFilterBooks(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -25,16 +27,33 @@ function Home() {
       });
   }, []);
 
+  function filterBooksHandler(e) {
+    setBooks(
+      filterBooks.filter((book) => book.title.includes(e.target.value.trim()))
+    );
+  }
+
   return (
     <div className={styles.home_page}>
-      <h1>
-        Books List{" "}
-        <span>
-          <Link to={`/books/create`}>
-            <CiSquarePlus />
-          </Link>
-        </span>
-      </h1>
+      <div className={styles.title_sec}>
+        <h1>
+          Books List{" "}
+          <span>
+            <Link to={`/books/create`}>
+              <CiSquarePlus />
+            </Link>
+          </span>
+        </h1>
+
+        <input
+          type="search"
+          name="searchBooks"
+          id=""
+          onChange={filterBooksHandler}
+          placeholder="Search Books"
+        />
+      </div>
+
       {books && books.length > 0 && (
         <table className={styles.table}>
           <thead>

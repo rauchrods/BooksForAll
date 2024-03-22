@@ -34,6 +34,7 @@ function ShowBook() {
         <div className={styles.book_container}>
           <div><span>ID:</span> {book._id}</div>
           <div><span>Title:</span> {book.title}</div>
+          <div><span>Title:</span> {book.author}</div>
           <div><span>Publish Year:</span> {book.publishYear}</div>
           <div><span>Page Count:</span> {book.pageCount}</div>
           <div><span>Created At:</span> {new Date(book.createdAt).toUTCString()}</div>
