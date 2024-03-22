@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BackButton from "../../components/back_button/BackButton";
 import Spinner from "../../components/spinner/Spinner";
 import styles from "./CreateBook.module.scss";
+import { useNavigate } from "react-router-dom";
 
 function CreateBook() {
   const [inputBook, setInputBook] = useState({
@@ -11,6 +12,8 @@ function CreateBook() {
     pageCount: "",
   });
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleInputBook(e) {
     setInputBook((currState) => ({
@@ -34,9 +37,11 @@ function CreateBook() {
         setInputBook({
           title: "",
           author: "",
-          publishYear: 0,
-          pageCount: 0,
+          publishYear: "",
+          pageCount: "",
         });
+        alert("Book added Successfully!! ");
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
