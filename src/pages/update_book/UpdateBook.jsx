@@ -24,7 +24,7 @@ function UpdateBook() {
   }
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/books/${id}`)
+    fetch(`https://bookstorerauch.vercel.app/books/${id}`)
       .then((response) => response.json())
       .then((response) => {
         setInputBook(response);

@@ -25,7 +25,7 @@ function CreateBook() {
   function handleSaveBook(e) {
     e.preventDefault();
     setLoading(true);
-    fetch("http://localhost:3000/books", {
+    fetch("https://bookstorerauch.vercel.app/books", {
       method: "POST",
       body: JSON.stringify(inputBook),
       headers: { "Content-Type": "application/json" },
