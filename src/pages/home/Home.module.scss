@@ -1,0 +1,44 @@
+.home_page {
+  padding: 1rem;
+
+  > h1 {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .table {
+    width: 100%;
+    // border: 1px solid black;
+    // border-collapse: collapse;
+    overflow-x: auto;
+
+    th {
+      background-color: rgb(249, 252, 105);
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      text-align: center;
+      padding: 0.4rem;
+      border-radius: 8px;
+    }
+
+    .crud_sec {
+      display: flex;
+      justify-content: center;
+      column-gap: 0.8rem;
+
+      svg {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
