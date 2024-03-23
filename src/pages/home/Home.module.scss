@@ -23,11 +23,13 @@
     }
   }
 
+  .table_container{
+    overflow-x: auto;
+  }
+
   .table {
     width: 100%;
-    // border: 1px solid black;
-    // border-collapse: collapse;
-    overflow-x: auto;
+    
 
     th {
       background-color: rgb(249, 252, 105);
@@ -46,8 +48,18 @@
       justify-content: center;
       column-gap: 0.8rem;
 
+      a:link:nth-child(1), a:visited:nth-child(1){
+        color: rgb(34, 109, 247);
+      }
+      a:link:nth-child(2), a:visited:nth-child(2){
+        color: rgb(228, 187, 6);
+      }
+      a:link:nth-child(3), a:visited:nth-child(3){
+        color: rgb(250, 46, 38);
+      }
+
       svg {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
       }
     }
   }

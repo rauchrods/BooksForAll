@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import BackButton from "../../components/back_button/BackButton";
 import styles from "./UpdateBook.module.scss";
 import Spinner from "../../components/spinner/Spinner";
+import Button from "../../components/button/Button";
 
 function UpdateBook() {
   const [inputBook, setInputBook] = useState({
@@ -116,7 +117,9 @@ function UpdateBook() {
           />
         </div>
 
-        <button type="submit">Submit Book</button>
+        <Button type="submit">
+          Edit Book
+        </Button>
       </form>
 
       {loading && <Spinner />}

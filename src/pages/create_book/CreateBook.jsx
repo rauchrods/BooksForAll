@@ -3,6 +3,7 @@ import BackButton from "../../components/back_button/BackButton";
 import Spinner from "../../components/spinner/Spinner";
 import styles from "./CreateBook.module.scss";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/button/Button";
 
 function CreateBook() {
   const [inputBook, setInputBook] = useState({
@@ -29,7 +30,7 @@ function CreateBook() {
       method: "POST",
       body: JSON.stringify(inputBook),
       headers: { "Content-Type": "application/json" },
-      redirect: "follow"
+      redirect: "follow",
     })
       .then((response) => response.json())
       .then((result) => {
@@ -52,7 +53,7 @@ function CreateBook() {
 
   return (
     <div className={styles.create_book_page}>
-      <h1>Add a Book so that whole World can see</h1>
+      <h1>Add a Book so that the whole World can see it!</h1>
       <BackButton />
       <form onSubmit={handleSaveBook} className={styles.form_container}>
         <div>
@@ -100,7 +101,9 @@ function CreateBook() {
           />
         </div>
 
-        <button type="submit">Submit Book</button>
+        <Button type="submit" className={"addBook_button"}>
+          Create Book
+        </Button>
       </form>
 
       {loading && <Spinner />}

@@ -23,13 +23,18 @@ function Home() {
         setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
   }, []);
 
   function filterBooksHandler(e) {
     setBooks(
-      filterBooks.filter((book) => book.title.includes(e.target.value.trim()))
+      filterBooks.filter(
+        (book) =>
+          book.title.includes(e.target.value.toLowerCase().trim()) ||
+          book.author.includes(e.target.value.toLowerCase().trim())
+      )
     );
   }
 
@@ -53,41 +58,42 @@ function Home() {
           placeholder="Search Books"
         />
       </div>
-
-      {books && books.length > 0 && (
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Operations</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>
-                  <div className={styles.crud_sec}>
-                    <Link to={`/books/details/${book._id}`}>
-                      <FaCircleInfo />
-                    </Link>
-                    <Link to={`/books/edit/${book._id}`}>
-                      <FaEdit />
-                    </Link>
-                    <Link to={`/books/delete/${book._id}`}>
-                      <MdDelete />
-                    </Link>
-                  </div>
-                </td>
+      <div className={styles.table_container}>
+        {books && books.length > 0 && (
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Operations</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody>
+              {books.map((book, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{book.title}</td>
+                  <td>{book.author}</td>
+                  <td>
+                    <div className={styles.crud_sec}>
+                      <Link to={`/books/details/${book._id}`}>
+                        <FaCircleInfo />
+                      </Link>
+                      <Link to={`/books/edit/${book._id}`}>
+                        <FaEdit />
+                      </Link>
+                      <Link to={`/books/delete/${book._id}`}>
+                        <MdDelete />
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
       {books.length == 0 && (
         <h2>No Books Present in Database Please add it to see here</h2>
