@@ -33,7 +33,8 @@ function Home() {
       filterBooks.filter(
         (book) =>
           book.title.includes(e.target.value.toLowerCase().trim()) ||
-          book.author.includes(e.target.value.toLowerCase().trim())
+          book.author.includes(e.target.value.toLowerCase().trim()) ||
+          book.genre.includes(e.target.value.toLowerCase().trim())
       )
     );
   }
@@ -66,6 +67,7 @@ function Home() {
                 <th>No</th>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Genre</th>
                 <th>Operations</th>
               </tr>
             </thead>
@@ -75,6 +77,7 @@ function Home() {
                   <td>{index + 1}</td>
                   <td>{book.title}</td>
                   <td>{book.author}</td>
+                  <td>{book.genre}</td>
                   <td>
                     <div className={styles.crud_sec}>
                       <Link to={`/books/details/${book._id}`}>

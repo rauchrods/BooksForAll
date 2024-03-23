@@ -11,11 +11,13 @@ function UpdateBook() {
     author: "",
     publishYear: "",
     pageCount: "",
+    genre: "",
+    pdfLink: "",
   });
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
-   const navigate =  useNavigate();
+  const navigate = useNavigate();
 
   function handleEditBook(e) {
     setInputBook((currState) => ({
@@ -37,7 +39,7 @@ function UpdateBook() {
       });
   }, []);
 
-  console.log(inputBook);
+  // console.log(inputBook);
   function handleSubmitBook(e) {
     e.preventDefault();
     setLoading(true);
@@ -45,21 +47,22 @@ function UpdateBook() {
       method: "PUT",
       body: JSON.stringify(inputBook),
       headers: { "Content-Type": "application/json" },
-      redirect: "follow"
+      redirect: "follow",
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setLoading(false);
         setInputBook({
           title: "",
           author: "",
           publishYear: "",
           pageCount: "",
+          genre: "",
+          pdfLink: "",
         });
         alert("Book Updated Succesfully!!");
-        navigate('/')
-
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
@@ -116,10 +119,30 @@ function UpdateBook() {
             required
           />
         </div>
+        <div>
+          <label htmlFor="inp-genre">Genre:</label>
+          <input
+            type="text"
+            name="genre"
+            onChange={handleEditBook}
+            value={inputBook.genre}
+            id="inp-genre"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="inp-pdfLink">PdfLink:</label>
+          <input
+            type="text"
+            name="pdfLink"
+            onChange={handleEditBook}
+            value={inputBook.pdfLink}
+            id="inp-pdfLink"
+            required
+          />
+        </div>
 
-        <Button type="submit">
-          Edit Book
-        </Button>
+        <Button type="submit">Edit Book</Button>
       </form>
 
       {loading && <Spinner />}

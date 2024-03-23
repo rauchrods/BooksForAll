@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Spinner from "../../components/spinner/Spinner";
 import styles from "./ShowBook.module.scss";
 import BackButton from "../../components/back_button/BackButton";
@@ -24,6 +24,10 @@ function ShowBook() {
       });
   }, []);
 
+  function redirectLinkHandler(link){
+    window.open(link, "_blank");
+  }
+
   return (
     <div className={styles.show_book}>
       <h1>Book Details</h1>
@@ -35,10 +39,12 @@ function ShowBook() {
           <div><span>ID:</span> {book._id}</div>
           <div><span>Title:</span> {book.title}</div>
           <div><span>Author:</span> {book.author}</div>
+          <div><span>Genre:</span> {book.genre}</div>
           <div><span>Publish Year:</span> {book.publishYear}</div>
           <div><span>Page Count:</span> {book.pageCount}</div>
           <div><span>Created At:</span> {new Date(book.createdAt).toUTCString()}</div>
           <div><span>Last Updated:</span> {new Date(book.updatedAt).toUTCString()}</div>
+          <div ><span>PDF Link:</span> <a href={book.pdfLink} target="blank">link for pdf</a></div>
         </div>
       )}
 

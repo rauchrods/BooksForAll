@@ -11,6 +11,8 @@ function CreateBook() {
     author: "",
     publishYear: "",
     pageCount: "",
+    genre: "",
+    pdfLink: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -34,13 +36,15 @@ function CreateBook() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setLoading(false);
         setInputBook({
           title: "",
           author: "",
           publishYear: "",
           pageCount: "",
+          genre: "",
+          pdfLink: "",
         });
         alert("Book added Successfully!! ");
         navigate("/");
@@ -98,6 +102,29 @@ function CreateBook() {
             value={inputBook.pageCount}
             id="inp-pageCount"
             required
+          />
+        </div>
+        <div>
+          <label htmlFor="inp-genre">Genre:</label>
+          <input
+            type="text"
+            name="genre"
+            onChange={handleInputBook}
+            value={inputBook.genre}
+            id="inp-genre"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="inp-pdfLink">PdfLink:</label>
+          <input
+            type="text"
+            name="pdfLink"
+            onChange={handleInputBook}
+            value={inputBook.pdfLink}
+            id="inp-pdfLink"
+            required
+            placeholder="Paste the shareable link of your pdf file ."
           />
         </div>
 

@@ -1,7 +1,7 @@
 .home_page {
   padding: 1rem;
 
-   h1 {
+  h1 {
     margin: 1rem 0;
     display: flex;
     align-items: center;
@@ -13,34 +13,46 @@
     }
   }
 
-  .title_sec{
+  .title_sec {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    input{
+    input {
       padding: 0.4rem 1rem;
     }
   }
 
-  .table_container{
+  .table_container {
     overflow-x: auto;
   }
 
   .table {
     width: 100%;
-    
+    border-collapse: collapse;
+    border-radius: 12px;
+
+    thead {
+      color: white;
+    }
 
     th {
-      background-color: rgb(249, 252, 105);
+      background-color: rgb(3, 95, 80);
+      padding: 0.6rem 0.4rem;
+    }
+
+    td {
+      padding: 0.4rem;
     }
 
     td,
     th {
-      border: 1px solid black;
+      border: 1px solid rgb(173, 173, 173);
       text-align: center;
-      padding: 0.4rem;
-      border-radius: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgb(241, 239, 239);
     }
 
     .crud_sec {
@@ -48,13 +60,16 @@
       justify-content: center;
       column-gap: 0.8rem;
 
-      a:link:nth-child(1), a:visited:nth-child(1){
+      a:link:nth-child(1),
+      a:visited:nth-child(1) {
         color: rgb(34, 109, 247);
       }
-      a:link:nth-child(2), a:visited:nth-child(2){
+      a:link:nth-child(2),
+      a:visited:nth-child(2) {
         color: rgb(228, 187, 6);
       }
-      a:link:nth-child(3), a:visited:nth-child(3){
+      a:link:nth-child(3),
+      a:visited:nth-child(3) {
         color: rgb(250, 46, 38);
       }
 
