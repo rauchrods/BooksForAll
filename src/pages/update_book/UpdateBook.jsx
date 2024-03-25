@@ -22,7 +22,7 @@ function UpdateBook() {
   function handleEditBook(e) {
     setInputBook((currState) => ({
       ...currState,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     }));
   }
   useEffect(() => {
@@ -43,9 +43,16 @@ function UpdateBook() {
   function handleSubmitBook(e) {
     e.preventDefault();
     setLoading(true);
+    const refinedInputBook = {
+      ...inputBook,
+      title: inputBook.title.trim(),
+      author: inputBook.author.trim(),
+      genre: inputBook.genre.trim(),
+      pdfLink: inputBook.pdfLink.trim(),
+    };
     fetch(`https://bookstorerauch.vercel.app/books/${id}`, {
       method: "PUT",
-      body: JSON.stringify(inputBook),
+      body: JSON.stringify(refinedInputBook),
       headers: { "Content-Type": "application/json" },
       redirect: "follow",
     })

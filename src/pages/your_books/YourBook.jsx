@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import styles from "./YourBook.module.scss";
+import { useSelector } from "react-redux";
 import Spinner from "../../components/spinner/Spinner";
 import { Link } from "react-router-dom";
 import { FaCircleInfo } from "react-icons/fa6";
@@ -6,11 +8,9 @@ import { MdDeleteForever } from "react-icons/md";
 import { MdEditOff } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import styles from "./Home.module.scss";
 import { CiSquarePlus } from "react-icons/ci";
-import { useSelector } from "react-redux";
 
-function Home() {
+function YourBook() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filterBooks, setFilterBooks] = useState([]);
@@ -20,11 +20,11 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://bookstorerauch.vercel.app/books")
+    fetch(`https://bookstorerauch.vercel.app/books/userId/${currentUser._id}`)
       .then((response) => response.json())
       .then((response) => {
-        setBooks(response.data);
-        setFilterBooks(response.data);
+        setBooks(response.body);
+        setFilterBooks(response.body);
         setLoading(false);
       })
       .catch((error) => {
@@ -45,17 +45,9 @@ function Home() {
   }
 
   return (
-    <div className={styles.home_page}>
-      <div>{currentUser && <h1>Welcome {currentUser.userName}</h1>}</div>
+    <div className={styles.yourbooks_page}>
       <div className={styles.title_sec}>
-        <h1>
-          Books List{" "}
-          <span>
-            <Link to={`/books/create`}>
-              <CiSquarePlus />
-            </Link>
-          </span>
-        </h1>
+        <h1>your books</h1>
 
         <input
           type="search"
@@ -66,7 +58,7 @@ function Home() {
         />
       </div>
       <div className={styles.table_container}>
-        {books && books.length > 0 && (
+        {books && books.length > 0 ? (
           <table className={styles.table}>
             <thead>
               <tr>
@@ -109,6 +101,8 @@ function Home() {
               ))}
             </tbody>
           </table>
+        ):(
+          <h2>You have not added any books yet</h2>
         )}
       </div>
 
@@ -117,4 +111,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default YourBook;

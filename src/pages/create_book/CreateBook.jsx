@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BackButton from "../../components/back_button/BackButton";
 import Spinner from "../../components/spinner/Spinner";
 import styles from "./CreateBook.module.scss";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
+import { useSelector } from "react-redux";
 
 function CreateBook() {
+  const currentUser = useSelector((state) => state.currentUser);
   const [inputBook, setInputBook] = useState({
     title: "",
     author: "",
@@ -13,6 +15,7 @@ function CreateBook() {
     pageCount: "",
     genre: "",
     pdfLink: "",
+    userId: currentUser ? currentUser._id : "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -21,16 +24,24 @@ function CreateBook() {
   function handleInputBook(e) {
     setInputBook((currState) => ({
       ...currState,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     }));
   }
 
   function handleSaveBook(e) {
     e.preventDefault();
+    const refinedInputBook = {
+      ...inputBook,
+      title: inputBook.title.trim(),
+      author: inputBook.author.trim(),
+      genre: inputBook.genre.trim(),
+      pdfLink: inputBook.pdfLink.trim(),
+    };
+
     setLoading(true);
     fetch("https://bookstorerauch.vercel.app/books", {
       method: "POST",
-      body: JSON.stringify(inputBook),
+      body: JSON.stringify(refinedInputBook),
       headers: { "Content-Type": "application/json" },
       redirect: "follow",
     })
@@ -47,6 +58,7 @@ function CreateBook() {
           pdfLink: "",
         });
         alert("Book added Successfully!! ");
+
         navigate("/");
       })
       .catch((error) => {
@@ -54,6 +66,12 @@ function CreateBook() {
         console.log(error);
       });
   }
+
+  useEffect(() => {
+    if (currentUser === null) {
+      navigate("/signup");
+    }
+  });
 
   return (
     <div className={styles.create_book_page}>

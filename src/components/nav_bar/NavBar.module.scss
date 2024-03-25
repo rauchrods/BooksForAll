@@ -1,0 +1,28 @@
+.navbar {
+  background-color: rgb(245, 171, 75);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-size: 1.1rem;
+
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: white;
+  }
+
+  > h2 {
+    color: rgb(255, 255, 255);
+  }
+
+  .right_sec {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.5rem;
+  }
+}
