@@ -33,13 +33,15 @@ function Home() {
       });
   }, []);
 
+  console.log(filterBooks);
+
   function filterBooksHandler(e) {
     setBooks(
       filterBooks.filter(
         (book) =>
-          book.title.includes(e.target.value.toLowerCase().trim()) ||
-          book.author.includes(e.target.value.toLowerCase().trim()) ||
-          book.genre.includes(e.target.value.toLowerCase().trim())
+          book.title.toLowerCase().includes(e.target.value.toLowerCase().trim()) ||
+          book.author.toLowerCase().includes(e.target.value.toLowerCase().trim()) ||
+          book.genre.toLowerCase().includes(e.target.value.toLowerCase().trim())
       )
     );
   }

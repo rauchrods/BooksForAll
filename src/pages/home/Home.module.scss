@@ -1,9 +1,8 @@
 .home_page {
   padding: 1rem;
-  margin-top: 3rem;
+  margin-top: 4.5rem;
 
   h1 {
-    margin: 1rem 0;
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
@@ -15,9 +14,11 @@
   }
 
   .title_sec {
+    margin: 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    row-gap: 1rem;
 
     input {
       padding: 0.4rem 1rem;
@@ -77,6 +78,17 @@
       svg {
         font-size: 1.25rem;
       }
+    }
+  }
+}
+
+@media (width<500px) {
+  .home_page {
+    .title_sec {
+      flex-direction: column;
+
+      justify-content: space-between;
+      align-items: center;
     }
   }
 }

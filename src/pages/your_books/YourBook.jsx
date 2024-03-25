@@ -37,9 +37,13 @@ function YourBook() {
     setBooks(
       filterBooks.filter(
         (book) =>
-          book.title.includes(e.target.value.toLowerCase().trim()) ||
-          book.author.includes(e.target.value.toLowerCase().trim()) ||
-          book.genre.includes(e.target.value.toLowerCase().trim())
+          book.title
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          book.author
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          book.genre.toLowerCase().includes(e.target.value.toLowerCase().trim())
       )
     );
   }
@@ -101,7 +105,7 @@ function YourBook() {
               ))}
             </tbody>
           </table>
-        ):(
+        ) : (
           <h2>You have not added any books yet</h2>
         )}
       </div>
