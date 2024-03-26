@@ -14,7 +14,7 @@ function About() {
         </p>
         <p>
           You can check my portfoio here{" "}
-          <a href="https://rauchrodrigues.vercel.app/">My Portfolio</a>
+          <a href="https://rauchrodrigues.vercel.app/" target="_blank">My Portfolio</a>
         </p>
       </div>
     </div>
