@@ -25,4 +25,58 @@
     flex-direction: row;
     column-gap: 1.5rem;
   }
+
+  .ham_menu {
+    display: none;
+    svg {
+      font-size: 1.8rem;
+    }
+
+    cursor: pointer;
+    color: white;
+  }
+
+  .ham_menu_display {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(255, 255, 255);
+    animation-name: menuDisplayAnimation;
+    animation-duration: 0.65s;
+    animation-timing-function: cubic-bezier(0, 0.28, 0.38, 0.99);
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    row-gap: 0.8rem;
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: rgb(245, 171, 75);
+    }
+  }
+}
+
+@media (width < 525px) {
+  .navbar {
+    .right_sec {
+      display: none;
+    }
+
+    .ham_menu {
+      display: inline-block;
+    }
+  }
+}
+
+@keyframes menuDisplayAnimation {
+  0% {
+    left: 800px;
+  }
+  100% {
+    left: 0;
+  }
 }
