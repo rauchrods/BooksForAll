@@ -18,8 +18,13 @@ function CreateBook() {
     userId: currentUser ? currentUser._id : "",
   });
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const navigate = useNavigate();
+
+  const validPdfLinkRegEx = new RegExp(
+    /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/
+  );
 
   function handleInputBook(e) {
     setInputBook((currState) => ({
@@ -30,6 +35,12 @@ function CreateBook() {
 
   function handleSaveBook(e) {
     e.preventDefault();
+    if (!inputBook.pdfLink.match(validPdfLinkRegEx)) {
+      setErrorMsg("Enter a valid URl link");
+      // console.log("invalid url");
+      return;
+    }
+
     const refinedInputBook = {
       ...inputBook,
       title: inputBook.title.trim(),
@@ -63,7 +74,8 @@ function CreateBook() {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
+        alert(error.message);
+        // console.log(error);
       });
   }
 
@@ -150,6 +162,7 @@ function CreateBook() {
           Create Book
         </Button>
       </form>
+      {errorMsg && <p>{errorMsg}</p>}
 
       {loading && <Spinner />}
     </div>
