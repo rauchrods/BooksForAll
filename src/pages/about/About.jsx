@@ -12,6 +12,10 @@ function About() {
           link uploaded in some cloud like googlecloud etc. Once added your book
           will be available to all the viewers
         </p>
+        <p>
+          You can check my portfoio here{" "}
+          <a href="https://rauchrodrigues.vercel.app/">My Portfolio</a>
+        </p>
       </div>
     </div>
   );

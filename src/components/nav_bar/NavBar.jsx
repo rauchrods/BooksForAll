@@ -17,7 +17,7 @@ function NavBar() {
   return (
     <nav className={styles.navbar}>
       <Link to={"/"}>
-        <h2>BooksToYou</h2>
+        <h2>BooksToAll</h2>
       </Link>
       <div className={styles.right_sec}>
         {currentUser && (

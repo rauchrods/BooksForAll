@@ -14,5 +14,10 @@
     min-width: 300px;
     margin: 0 auto;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    text-align: center;
   }
 }
