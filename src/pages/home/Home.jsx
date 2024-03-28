@@ -33,7 +33,7 @@ function Home() {
       });
   }, []);
 
-  console.log(filterBooks);
+  // console.log(filterBooks);
 
   function filterBooksHandler(e) {
     setBooks(

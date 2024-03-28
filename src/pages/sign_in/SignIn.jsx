@@ -32,7 +32,7 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         alert(result.message);
         setLoading(false);
         if (result.message==='User created succesfully!') {

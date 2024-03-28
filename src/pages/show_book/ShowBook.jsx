@@ -6,6 +6,7 @@ import BackButton from "../../components/back_button/BackButton";
 
 function ShowBook() {
   const [book, setBook] = useState({});
+  const [bookUser, setBookUser] = useState("NA");
   const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
@@ -16,13 +17,29 @@ function ShowBook() {
       .then((response) => response.json())
       .then((response) => {
         setBook(response);
-        setLoading(false);
+        fetchUserById(response.userId);
+        // setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
         console.log(error);
       });
   }, []);
+
+  function fetchUserById(userId) {
+    fetch(`https://bookstorerauch.vercel.app/user/${userId}`)
+      .then((response) => response.json())
+      .then((response) => {
+        setBookUser(response.body);
+        // console.log(bookUser);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  }
+
 
   return (
     <div className={styles.show_book}>
@@ -56,6 +73,11 @@ function ShowBook() {
           <div>
             <span>Last Updated:</span> {new Date(book.updatedAt).toUTCString()}
           </div>
+          <div>
+            <span>Created By:</span> {bookUser.userName}
+          </div>
+          
+
           <div>
             <span>PDF Link:</span>{" "}
             <a href={book.pdfLink} target="blank">

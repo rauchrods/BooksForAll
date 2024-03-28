@@ -34,7 +34,7 @@ function LogIn() {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         alert(result.message);
         setLoading(false);
         if (result.message === "User logged in  succesfully!") {
