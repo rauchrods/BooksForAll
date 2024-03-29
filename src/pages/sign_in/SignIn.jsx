@@ -9,9 +9,11 @@ function SignIn() {
     userName: "",
     email: "",
     password: "",
+    cnfPassword: "",
   });
 
   const [loading, setLoading] = useState(false);
+  const [errMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   function handleUserInput(e) {
@@ -21,8 +23,15 @@ function SignIn() {
     }));
   }
 
+
+
   function handleSubmitUser(e) {
     e.preventDefault();
+    if (userInput.password !== userInput.cnfPassword) {
+      setErrorMessage("Password is not matching");
+      return;
+    }
+
     setLoading(true);
     fetch("https://bookstorerauch.vercel.app/auth/signup", {
       method: "POST",
@@ -35,13 +44,15 @@ function SignIn() {
         // console.log(result);
         alert(result.message);
         setLoading(false);
-        if (result.message==='User created succesfully!') {
+        setErrorMessage("");
+        if (result.message === "User created succesfully!") {
           navigate("/login");
         }
       })
       .catch((error) => {
         console.error(error);
         alert(error.message);
+        setErrorMessage("");
         setLoading(false);
       });
   }
@@ -87,6 +98,18 @@ function SignIn() {
               autoComplete="true"
             />
           </div>
+          <div>
+            <label htmlFor="inp-cnfPassword">Confirm Password: </label>
+            <input
+              type="password"
+              name="cnfPassword"
+              id="inp-cnfPassword"
+              placeholder="confirm password"
+              required
+              onChange={handleUserInput}
+              autoComplete="false"
+            />
+          </div>
           <Button type="submit">SignUp</Button>
         </form>
 
@@ -97,6 +120,9 @@ function SignIn() {
           </span>
         </div>
       </div>
+      {errMessage && <p style={{
+        color: "red"
+      }}>{errMessage}</p>}
 
       {loading && <Spinner />}
     </div>

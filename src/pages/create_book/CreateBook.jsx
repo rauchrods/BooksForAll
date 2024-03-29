@@ -162,7 +162,15 @@ function CreateBook() {
           Create Book
         </Button>
       </form>
-      {errorMsg && <p>{errorMsg}</p>}
+      {errorMsg && (
+        <p
+          style={{
+            color: "red",
+          }}
+        >
+          {errorMsg}
+        </p>
+      )}
 
       {loading && <Spinner />}
     </div>
